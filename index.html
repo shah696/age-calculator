@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="ageCal.css">
+</head>
+<body>
+<div>
+    <div class="nav">
+        <h1 class="h1">Age Calculator</h1>
+        <hr />
+    </div>
+    <div class="container">
+        <div class="first">
+            <label for="date">Date</label>
+            <input class="width" onchange="change(this)" type="number" id="date" name="date">
+        </div>
+        <div class="second">
+            <label for="date2">Month</label>
+            <input class="width" type="number" id="date2" name="date2">
+        </div>
+        <div class="three">
+            <label for="date3">Year</label>
+            <input class="width" type="number" id="date3" name="date3">
+        </div>
+
+    </div>
+   <div id="btn">
+    <button class="btn">Get Age</button>
+   </div>
+   <div class="txt">
+    your age is 21 years 10 Months 15 Days
+   </div>
+</div>
+</body>
+</html>
+
+<!-- <script>
+ function change(e){
+    let value=e.value
+    if(value < 0){
+      e.value = ""
+    }
+ }
+</script> -->
