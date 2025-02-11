@@ -1,47 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Age Calculator</title>
-    <link rel="stylesheet" href="ageCal.css">
-</head>
-<body>
-<div>
-    <div class="nav">
+    <link rel="stylesheet" href="ageCal.css" />
+  </head>
+  <body>
+    <div>
+      <div class="nav">
         <h1 class="h1">Age Calculator</h1>
         <hr />
-    </div>
-    <div class="container">
+      </div>
+      <div class="container">
         <div class="first">
-            <label for="date">Date</label>
-            <input class="width" onchange="change(this)" type="number" id="date" name="date">
+          <label for="date">Date</label>
+          <input
+            class="width"
+            oninput="change(this)"
+            type="number"
+            id="date"
+            name="date"
+          />
         </div>
         <div class="second">
-            <label for="date2">Month</label>
-            <input class="width" type="number" id="date2" name="date2">
+          <label for="month">Month</label>
+          <input
+            class="width"
+            oninput="monthChange(this)"
+            type="number"
+            id="month"
+            name="month"
+          />
         </div>
         <div class="three">
-            <label for="date3">Year</label>
-            <input class="width" type="number" id="date3" name="date3">
+          <label for="year">Year</label>
+          <input
+            class="width3"
+            type="number"
+            min="1980"
+            max="2030"
+            oninput="validateYear(this)"
+            id="year"
+            name="year"
+          />
         </div>
-
+      </div>
+      <div id="btn">
+        <button class="btn" onclick="getAge()">Get Age</button>
+      </div>
+      <div class="txt"></div>
     </div>
-   <div id="btn">
-    <button class="btn">Get Age</button>
-   </div>
-   <div class="txt">
-    your age is 21 years 10 Months 15 Days
-   </div>
-</div>
-</body>
+  </body>
 </html>
 
-<!-- <script>
- function change(e){
-    let value=e.value
-    if(value < 0){
-      e.value = ""
+<script>
+  function change(e) {
+    let value = e.value;
+    console.log(value);
+    if (value.includes("-")) {
+      return (e.value = 0);
     }
- }
-</script> -->
+  }
+
+  function monthChange(e) {
+    let value = e.value;
+    console.log(value);
+    if (value.includes("-")) {
+      return (e.value = 0);
+    }
+    if (value >= 12) {
+      return (e.value = 12);
+    }
+  }
+
+  function validateYear(e) {
+    let year = e.value;
+
+    // Agar year 1900 se chhota ya 2099 se bada hai to hata do
+    if (year < 1900 || year > 2099) {
+      e.value = "";
+    }
+  }
+
+  function getAge(){
+    let date = document.getElementById("date").value;
+    let month = document.getElementById("month").value;
+    let year = document.getElementById("year").value;
+    // console.log(date +" "+ month+ " " + year )
+    if (!date || !month || !year) {
+        document.querySelector(".txt").innerText = "Please fill the fields.";
+        return;
+    }
+
+    let birthDate = new Date(year, month - 1, date);
+    let today = new Date();
+    // console.log(birthDate + today)
+
+    let ageYears = today.getFullYear() - birthDate.getFullYear();
+    let ageMonths = today.getMonth() - birthDate.getMonth();
+    let ageDays = today.getDate() - birthDate.getDate();
+
+    console.log(ageMonths)
+
+    if (ageDays < 0) {
+        ageMonths -= 1;
+        ageDays += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    }
+
+    if (ageMonths < 0) {
+        ageYears -= 1;
+        ageMonths += 12;
+    }
+
+    document.querySelector(".txt").innerText = 
+        `Your age is ${ageYears} Years ${ageMonths} Months ${ageDays} Days.`;
+  }
+//   const allGet = 
+</script>

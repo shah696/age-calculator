@@ -37,7 +37,7 @@ body{
 .width{
     width: 130px;
 }
-#date, #date2, #date3 {
+#date, #month, #year {
     margin-top: 12px;
     height: 32px;
     width: 80%;
@@ -74,4 +74,7 @@ body{
     margin: 27px;
     font-size: larger;
     font-weight: bolder;
+}
+.width3{
+    min-width: 130px;
 }
